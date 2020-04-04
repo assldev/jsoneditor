@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>JSONEditor | Basic usage</title>
+
+  <link href="jsoneditor.min.css" rel="stylesheet" type="text/css">
+  <script src="jsoneditor.min.js"></script>
+
+  <style type="text/css">
+    #jsoneditor {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>
+    <button id="setJSON">Set JSON</button>
+    <button id="getJSON">Get JSON</button>
+  </p>
+  <textarea id="jsonInterface" rows="4" cols="50">
+    Place your JSON here!
+  </textarea>
+  <div id="jsoneditor"></div>
+
+  <script>
+    // create the editor
+    const container = document.getElementById('jsoneditor')
+    const options = {}
+    const editor = new JSONEditor(container, options)
+
+    // set json
+    document.getElementById('setJSON').onclick = function () {
+      const json = JSON.parse(document.getElementById('jsonInterface').value);
+      editor.set(json)
+    }
+
+    // get json
+    document.getElementById('getJSON').onclick = function () {
+      const json = editor.get()
+      alert(JSON.stringify(json, null, 2))
+    }
+  </script>
+</body>
+
+</html>
